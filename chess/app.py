@@ -10,6 +10,5 @@ class App:
         else:
             self.game = Game()
 
-    def run(self):
-        while True:
-            self.game.update()
+        self.game.run()
+
