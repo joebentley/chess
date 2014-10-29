@@ -16,13 +16,22 @@ def init2D(rows, columns, value):
 
 # The board is addressed such that board[0][0] is the upper left corner, which is a white square
 class Board:
+    """Holds data and methods for manipulating the current state of the game board.
+       The board is addressed such that board[0][0] is the upper left corner, which
+       is a white square.
+
+       Members:
+       board -- 2D list holding the pieces
+       width, height -- width and height of 2D list
+    """
+
     def __init__(self, width = 8, height = 8):
         self.width = width
         self.height = height
         self.board = init2D(width, height, None)
 
-    # Render board as a string with new lines between each row
     def render(self):
+        """Render the board as a string with new lines at the end of each row"""
         output = ''
 
         # Loop through entire board
@@ -37,8 +46,31 @@ class Board:
         return output
 
 
-    # Initialize a board as standard in chess
+    def getSquare(self, position):
+        """Return piece at position"""
+        return self.board[position.y][position.x]
+
+    def setSquare(self, position, piece):
+        """Set square at given position with piece"""
+        self.board[position.y][position.x] = piece
+
+    def movePiece(self, from_position, to_position):
+        """Move piece at from one position to another, overwriting
+           the piece at the end position.
+
+           Keyword arguments:
+           from_position (Point) -- the position that holds the piece to move
+           to_position   (Point) -- the position to move the piece to
+        """
+        # Get the piece from the old position and place in new position
+        piece = self.getSquare(from_position)
+        self.setSquare(to_position, piece)
+        # Set the old position to be blank
+        self.setSquare(from_position, Blank())
+
+
     def initBoard():
+        """Initialize a standard chessboard."""
         board = Board()
 
         # Spawn the black back row
@@ -75,3 +107,4 @@ class Board:
                 board.board[y][x] = Blank()
 
         return board
+
