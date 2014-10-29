@@ -12,7 +12,7 @@ class CursesGame:
         self.board = Board.initBoard()
 
     def draw(self, stdscr):
-        '''Draw the board onto stdscr.'''
+        """Draw the board onto stdscr."""
         for y, row in enumerate(self.board.board):
             for x, piece in enumerate(row):
                 # Draw letters for each column
@@ -37,7 +37,7 @@ class CursesGame:
                         ord(piece.render()))
 
     def update(self, stdscr):
-        '''Main game loop, responsible for drawing and input.'''
+        """Main game loop, responsible for drawing and input."""
         while True:
             # Clear the screen
             stdscr.clear()
@@ -55,6 +55,6 @@ class CursesGame:
 
 
     def run(self):
-        '''Launch main game loop.'''
+        """Launch main game loop."""
         # Setup curses and launch main game update loop
         wrapper(self.update)
