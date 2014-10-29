@@ -1,21 +1,43 @@
-from point import Point
-from piece import *
+from chess.point import Point
+from chess.pieces.color import Color
+from chess.pieces.pawn import Pawn
+from chess.pieces.bishop import Bishop
+from chess.pieces.knight import Knight
+from chess.pieces.rook import Rook
+from chess.pieces.queen import Queen
+from chess.pieces.king import King
 
+
+# Generate a 2D matrix filling each cell with a given value
 def init2D(rows, columns, value):
     return [[value for x in range(columns)] for x in range(rows)]
+
 
 # The board is addressed such that board[0][0] is the upper left corner, which is a white square
 class Board:
     def __init__(self):
         self.board = init2D(8, 8, None)
 
-    # Render board as a string
+    # Render board as a string with new lines between each row
     def render(self):
-        for y in range(7):
-            for x in range(7):
-                print(self.board[x][y].render())
+        output = ''
+
+        for y in range(8):
+            for x in range(8):
+                square = self.board[y][x]
+
+                # Render a blank square as an empty space
+                if square == None:
+                    output += ' '
+                else:
+                    output += square.render()
+
+                # Add a newline if at the end of a row
                 if x == 7:
-                    print()
+                    output += '\n'
+
+        return output
+
 
     # Initialize a board as standard in chess
     def initBoard():
@@ -48,12 +70,5 @@ class Board:
         # Spawn the white pawns
         for x in range(len(board.board[6])):
             board.board[6][x] = Pawn(Point(x, 6), Color.white)
-
-        # Fill the rest with blank pieces
-        for x in range(len(board.board[7])):
-            board.board[2][x] = Piece(Point(x, 2), Color.neither)
-            board.board[3][x] = Piece(Point(x, 3), Color.neither)
-            board.board[4][x] = Piece(Point(x, 4), Color.neither)
-            board.board[5][x] = Piece(Point(x, 5), Color.neither)
 
         return board

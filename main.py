@@ -1,11 +1,10 @@
 #!/usr/local/bin/python3
 
-from piece import *
-from board import Board
+from chess.game import Game
 
 def main():
-    board = Board.initBoard()
-    print(board.render())
+    game = Game()
+    game.run()
 
 if __name__ == '__main__':
     main()
