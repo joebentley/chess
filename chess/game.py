@@ -5,4 +5,5 @@ class Game:
     def update(self):
         board = Board.initBoard()
         print(board.render())
+        input()
 

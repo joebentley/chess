@@ -5,7 +5,7 @@ class Piece:
     color = Color.white
     position = Point(0, 0)
 
-    def __init__(self, position, color):
+    def __init__(self, position = Point(0, 0), color = Color.neither):
         self.position = position
         self.color = color
 

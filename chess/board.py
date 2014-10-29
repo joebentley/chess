@@ -6,6 +6,7 @@ from chess.pieces.knight import Knight
 from chess.pieces.rook import Rook
 from chess.pieces.queen import Queen
 from chess.pieces.king import King
+from chess.pieces.blank import Blank
 
 
 # Generate a 2D matrix filling each cell with a given value
@@ -27,13 +28,7 @@ class Board:
         # Loop through entire board
         for y in range(self.height):
             for x in range(self.width):
-                square = self.board[y][x]
-
-                # Render a blank square as a cross
-                if square == None:
-                    output += 'x'
-                else:
-                    output += square.render()
+                output += self.board[y][x].render()
 
                 # Add a newline if at the end of a row
                 if x == self.width - 1:
@@ -73,5 +68,10 @@ class Board:
         # Spawn the white pawns
         for x in range(len(board.board[6])):
             board.board[6][x] = Pawn(Point(x, 6), Color.white)
+
+        # Fill the rest with blanks
+        for y in range(2, 6):
+            for x in range(len(board.board[y])):
+                board.board[y][x] = Blank()
 
         return board
