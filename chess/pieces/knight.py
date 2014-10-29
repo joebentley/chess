@@ -12,8 +12,8 @@ class Knight(Piece):
         # If the move is in an L shape, there are two cases,
         # - the difference in x is 1 and the difference in y is 2, like a normal L
         # - the difference in x is 2 and the difference in y is 1, an L on its side
-        if ((abs(position.x - self.x) == 1 and abs(position.y - self.y) == 2) or
-            (abs(position.x - self.x) == 2 and abs(position.y - self.y) == 1)):
+        if ((abs(position.x - self.position.x) == 1 and abs(position.y - self.position.y) == 2) or
+            (abs(position.x - self.position.x) == 2 and abs(position.y - self.position.y) == 1)):
 
             return True
 

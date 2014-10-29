@@ -8,4 +8,7 @@ class Queen(Piece):
         else:
             return 'q'
 
+    def validMove(self, position):
+        # Check for diagonal movement
+        pass
 

@@ -15,7 +15,7 @@ class Pawn(Piece):
         if self.color == Color.black:
             moveDir = 1
 
-        if position.x == self.x and position.y == self.y + moveDir:
+        if position.x == self.position.x and position.y == self.position.y + moveDir:
             return True
         return False
 
