@@ -29,9 +29,9 @@ class Board:
             for x in range(self.width):
                 square = self.board[y][x]
 
-                # Render a blank square as an empty space
+                # Render a blank square as a cross
                 if square == None:
-                    output += ' '
+                    output += 'x'
                 else:
                     output += square.render()
 
