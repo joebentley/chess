@@ -4,9 +4,9 @@ from chess.pieces.piece import Piece
 class Knight(Piece):
     def render(self):
         if self.color == Color.white:
-            return 'K'
+            return 'N'
         else:
-            return 'k'
+            return 'n'
 
     def validMove(self, position):
         # If the move is in an L shape, there are two cases,
