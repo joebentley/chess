@@ -5,31 +5,48 @@ from chess.board import Board
 class CursesGame:
     def __init__(self):
         # Setup position on screen
-        self.offsetX = 2
-        self.offsetY = 2
+        self.offsetX = 0
+        self.offsetY = 0
 
         # Initialize a new board
         self.board = Board.initBoard()
 
-    # Draw board onto the screen
     def draw(self, stdscr):
+        '''Draw the board onto stdscr.'''
         for y in range(len(self.board.board)):
             for x in range(len(self.board.board[y])):
+                # Draw letters for each column
+                if y == 0:
+                    # Convert x-coordinate to lower case letter in alphabet
+                    char = chr(x + 97)
+                    stdscr.addch(self.offsetY, x + self.offsetX + 2, char)
+
+                    # Draw horizontal rule
+                    stdscr.addch(self.offsetY + 1, x + self.offsetX + 2, '-')
+
+                # Draw numbers for each row
+                if x == 0:
+                    # Convert y-coordinate to number in sequence [8..1]
+                    num = str(8 - y)
+                    stdscr.addch(y + self.offsetY + 2, self.offsetX, num)
+
+                    # Draw vertical rule
+                    stdscr.addch(y + self.offsetY + 2, self.offsetX + 1, '|')
+
                 # Draw the character at given point onto screen at offset (offsetX, offsetY)
-                stdscr.addch(y + self.offsetY, x + self.offsetX,
+                stdscr.addch(y + self.offsetY + 2, x + self.offsetX + 2,
                         ord(self.board.board[y][x].render()))
 
-    # Main game loop, responsible for input and drawing
     def update(self, stdscr):
+        '''Main game loop, responsible for drawing and input.'''
         while True:
+            # Clear the screen
             stdscr.clear()
-
             # Draw the board
             self.draw(stdscr)
 
             # Get key input
             key = stdscr.getkey()
-
             # Quit if q pressed
             if key == 'q':
                 return
@@ -38,8 +55,7 @@ class CursesGame:
             stdscr.refresh()
 
 
-
-    # Launch main game update loop
     def run(self):
+        '''Launch main game loop.'''
         # Setup curses and launch main game update loop
         wrapper(self.update)
