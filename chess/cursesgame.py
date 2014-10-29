@@ -19,15 +19,27 @@ class CursesGame:
                 stdscr.addch(y + self.offsetY, x + self.offsetX,
                         ord(self.board.board[y][x].render()))
 
+    # Main game loop, responsible for input and drawing
     def update(self, stdscr):
-        stdscr.clear()
+        while True:
+            stdscr.clear()
 
-        # Draw the board
-        self.draw(stdscr)
+            # Draw the board
+            self.draw(stdscr)
 
-        # Refresh the window
-        stdscr.refresh()
-        stdscr.getkey()
+            # Get key input
+            key = stdscr.getkey()
 
+            # Quit if q pressed
+            if key == 'q':
+                return
+
+            # Refresh the window
+            stdscr.refresh()
+
+
+
+    # Launch main game update loop
     def run(self):
+        # Setup curses and launch main game update loop
         wrapper(self.update)

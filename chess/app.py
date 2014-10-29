@@ -10,5 +10,6 @@ class App:
         else:
             self.game = Game()
 
+    def run(self):
         self.game.run()
 
