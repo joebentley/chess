@@ -8,3 +8,16 @@ class King(Piece):
         else:
             return 'k'
 
+    def validMove(self, position):
+        # Check for single diagonal movement
+        if abs(position.x - self.position.x) == 1 and abs(position.y - self.position.y) == 1:
+            return True
+
+        # Check for single horizontal or vertical movement
+        if ((abs(position.x - self.position.x) == 1 and abs(position.y - self.position.y) == 0) or
+            (abs(position.y - self.position.y) == 1 and abs(position.x - self.position.x) == 0)):
+
+            return True
+
+        return False
+
