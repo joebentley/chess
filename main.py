@@ -3,7 +3,7 @@
 from chess.app import App
 
 def main():
-    app = App(True)
+    app = App(curses=True)
     app.run()
 
 if __name__ == '__main__':
