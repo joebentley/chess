@@ -15,15 +15,18 @@ def init2D(rows, columns, value):
 
 # The board is addressed such that board[0][0] is the upper left corner, which is a white square
 class Board:
-    def __init__(self):
-        self.board = init2D(8, 8, None)
+    def __init__(self, width = 8, height = 8):
+        self.width = width
+        self.height = height
+        self.board = init2D(width, height, None)
 
     # Render board as a string with new lines between each row
     def render(self):
         output = ''
 
-        for y in range(8):
-            for x in range(8):
+        # Loop through entire board
+        for y in range(self.height):
+            for x in range(self.width):
                 square = self.board[y][x]
 
                 # Render a blank square as an empty space
@@ -33,7 +36,7 @@ class Board:
                     output += square.render()
 
                 # Add a newline if at the end of a row
-                if x == 7:
+                if x == self.width - 1:
                     output += '\n'
 
         return output
