@@ -8,4 +8,12 @@ class Rook(Piece):
         else:
             return 'r'
 
+    def validMove(self, position):
+        # Check for horizontal and vertical movement
+        if ((abs(position.x - self.position.x) > 0 and (position.y - self.position.y == 0)) or
+            (abs(position.y - self.position.y) > 0 and (position.x - self.position.x == 0))):
+
+            return True
+
+        return False
 
