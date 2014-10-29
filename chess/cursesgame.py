@@ -13,8 +13,8 @@ class CursesGame:
 
     def draw(self, stdscr):
         '''Draw the board onto stdscr.'''
-        for y in range(len(self.board.board)):
-            for x in range(len(self.board.board[y])):
+        for y, row in enumerate(self.board.board):
+            for x, piece in enumerate(row):
                 # Draw letters for each column
                 if y == 0:
                     # Convert x-coordinate to lower case letter in alphabet
@@ -23,7 +23,6 @@ class CursesGame:
 
                     # Draw horizontal rule
                     stdscr.addch(self.offsetY + 1, x + self.offsetX + 2, '-')
-
                 # Draw numbers for each row
                 if x == 0:
                     # Convert y-coordinate to number in sequence [8..1]
@@ -35,7 +34,7 @@ class CursesGame:
 
                 # Draw the character at given point onto screen at offset (offsetX, offsetY)
                 stdscr.addch(y + self.offsetY + 2, x + self.offsetX + 2,
-                        ord(self.board.board[y][x].render()))
+                        ord(piece.render()))
 
     def update(self, stdscr):
         '''Main game loop, responsible for drawing and input.'''
