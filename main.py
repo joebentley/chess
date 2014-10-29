@@ -1,10 +1,10 @@
 #!/usr/local/bin/python3
 
-from chess.game import Game
+from chess.app import App
 
 def main():
-    game = Game()
-    game.run()
+    app = App()
+    app.run()
 
 if __name__ == '__main__':
     main()
