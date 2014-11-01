@@ -8,7 +8,7 @@ class Knight(Piece):
         else:
             return 'n'
 
-    def validMove(self, position):
+    def valid_move(self, position):
         # If the move is in an L shape, there are two cases,
         # - the difference in x is 1 and the difference in y is 2, like a normal L
         # - the difference in x is 2 and the difference in y is 1, an L on its side

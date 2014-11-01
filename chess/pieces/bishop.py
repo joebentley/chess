@@ -8,7 +8,7 @@ class Bishop(Piece):
         else:
             return 'b'
 
-    def validMove(self, position):
+    def valid_move(self, position):
         # Check for diagonal movement (for diagonal movement, dy/dx = 1)
         if abs(position.y - self.position.y) / abs(position.x - self.position.x) == 1:
             return True

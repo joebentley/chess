@@ -10,14 +10,14 @@ class Piece:
         self.color = color
 
     # Return a list of all position the piece could reach
-    def pointInReach(self, board):
+    def points_in_reach(self, board):
         results = []
 
         for y, row in enumerate(self.board.board):
             for x, _ in enumerate(row):
                 position = Point(x, y)
 
-                if self.validMove(position):
+                if self.valid_move(position):
                     results.append(position)
 
     # Return a textual representation of the piece

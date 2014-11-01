@@ -4,7 +4,7 @@ from chess.board import Board
 class Game:
     def update(self):
         while True:
-            board = Board.initBoard()
+            board = Board.init_board()
             print(board.render())
             input()
 

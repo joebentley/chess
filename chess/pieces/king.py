@@ -8,7 +8,7 @@ class King(Piece):
         else:
             return 'k'
 
-    def validMove(self, position):
+    def valid_move(self, position):
         # Check for single diagonal movement
         if abs(position.x - self.position.x) == 1 and abs(position.y - self.position.y) == 1:
             return True

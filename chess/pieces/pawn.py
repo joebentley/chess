@@ -25,14 +25,14 @@ class Pawn(Piece):
         """Return signed move distance that the piece can move."""
         return self.moveDir if self.moved else self.moveDir * 2
 
-    def validMove(self, position):
+    def valid_move(self, position):
         if position.x == self.position.x and position.y == self.position.y + self.moveDistance():
             return True
         return False
 
     def isPathClear(self, board, to_pos):
-        if (board.pieceAtSquare(to_pos) or
-            board.pieceAtSquare(self.position.add(Point(0, self.moveDistance())))):
+        if (board.piece_at(to_pos) or
+            board.piece_at(self.position.add(Point(0, self.moveDistance())))):
 
             return False
 

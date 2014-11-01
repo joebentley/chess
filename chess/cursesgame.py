@@ -9,7 +9,7 @@ class CursesGame:
         self.offsetY = 0
 
         # Initialize a new board
-        self.board = Board.initBoard()
+        self.board = Board.init_board()
 
     def draw(self, stdscr):
         """Draw the board onto stdscr."""

@@ -46,19 +46,19 @@ class Board:
         return output
 
 
-    def getSquare(self, position):
+    def getsquare(self, position):
         """Return piece at position"""
         return self.board[position.y][position.x]
 
-    def setSquare(self, position, piece):
+    def setsquare(self, position, piece):
         """Set square at given position with piece"""
         self.board[position.y][position.x] = piece
 
-    def pieceAtSquare(self, position):
+    def piece_at(self, position):
         """Whether or not the square is occupied."""
         return not isinstance(self.board[position.y][position.x], Blank)
 
-    def movePiece(self, from_position, to_position):
+    def move_piece(self, from_position, to_position):
         """Move piece at from one position to another, overwriting
            the piece at the end position.
 
@@ -67,12 +67,12 @@ class Board:
            to_position   (Point) -- the position to move the piece to
         """
         # Get the piece from the old position and place in new position
-        piece = self.getSquare(from_position)
-        self.setSquare(to_position, piece)
+        piece = self.getsquare(from_position)
+        self.setsquare(to_position, piece)
         # Set the old position to be blank
-        self.setSquare(from_position, Blank())
+        self.setsquare(from_position, Blank())
 
-    def pointOnBoard(self, position):
+    def point_on_board(self, position):
         """Check if position (Point) is on the board."""
         if (position.x < 0 or position.y < 0 or
             position.x > board.width - 1 or position.y > board.height - 1):
@@ -82,7 +82,7 @@ class Board:
         return True
 
 
-    def initBoard():
+    def init_board():
         """Initialize a standard chessboard."""
         board = Board()
 
