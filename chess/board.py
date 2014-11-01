@@ -54,6 +54,10 @@ class Board:
         """Set square at given position with piece"""
         self.board[position.y][position.x] = piece
 
+    def pieceAtSquare(self, position):
+        """Whether or not the square is occupied."""
+        return not isinstance(self.board[position.y][position.x], Blank)
+
     def movePiece(self, from_position, to_position):
         """Move piece at from one position to another, overwriting
            the piece at the end position.
@@ -67,6 +71,15 @@ class Board:
         self.setSquare(to_position, piece)
         # Set the old position to be blank
         self.setSquare(from_position, Blank())
+
+    def pointOnBoard(self, position):
+        """Check if position (Point) is on the board."""
+        if (position.x < 0 or position.y < 0 or
+            position.x > board.width - 1 or position.y > board.height - 1):
+
+            return False
+
+        return True
 
 
     def initBoard():

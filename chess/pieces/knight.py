@@ -19,3 +19,7 @@ class Knight(Piece):
 
         # Movement not in an L shape
         return False
+
+    def isPathClear(self, board, to_pos):
+        # Path always clear for knight
+        return True

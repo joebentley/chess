@@ -10,3 +10,6 @@ class Point:
 
     def distanceTo(self, point):
         return math.sqrt(math.pow(self.x - point.x, 2) + math.pow(self.y - point.y, 2))
+
+    def add(self, point):
+        return Point(self.x + point.x, self.y + point.y)

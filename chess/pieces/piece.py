@@ -9,9 +9,16 @@ class Piece:
         self.position = position
         self.color = color
 
-    # Check if move from self.position to position is valid for this piece
-    def validMove(self, position):
-        return True
+    # Return a list of all position the piece could reach
+    def pointInReach(self, board):
+        results = []
+
+        for y, row in enumerate(self.board.board):
+            for x, _ in enumerate(row):
+                position = Point(x, y)
+
+                if self.validMove(position):
+                    results.append(position)
 
     # Return a textual representation of the piece
     def render(self):
