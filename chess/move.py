@@ -17,5 +17,5 @@ def checkMove(self, board, from_pos, to_pos):
     if board.piece_at(to_pos) and board.getPiece(to_pos).color == piece.color:
         return False
     # Check if there are any pieces in the path of our piece
-    if piece.isPathClear(board, to_pos):
+    if piece.is_path_clear(board, to_pos):
         pass

@@ -30,7 +30,7 @@ class Pawn(Piece):
             return True
         return False
 
-    def isPathClear(self, board, to_pos):
+    def is_path_clear(self, board, to_pos):
         if (board.piece_at(to_pos) or
             board.piece_at(self.position.add(Point(0, self.moveDistance())))):
 

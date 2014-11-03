@@ -21,3 +21,6 @@ class King(Piece):
 
         return False
 
+    def is_path_clear(self, board, to_pos):
+        return True
+
