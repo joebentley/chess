@@ -21,6 +21,10 @@ class Point:
            coords -- string of form 'A1', 'G5', etc.
         """
 
+        # Check that string is uppercase
+        if coords[0].islower():
+            raise IndexError('Lower-case character out of range, use upper-case only')
+
         # String representation is 1-indexed
         return Point(ord(coords[0]) - 64 - 1, int(coords[1]) - 1)
 

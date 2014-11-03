@@ -72,10 +72,8 @@ class CursesGame:
 
                 log(str(self.board.getsquare(Point.from_letters(command))))
 
-
             # Refresh the window
             stdscr.refresh()
-
 
     def run(self):
         """Launch main game loop."""
