@@ -1,5 +1,6 @@
 
 import curses
+from chess.point import Point
 from chess.board import Board
 from chess.log import log
 
@@ -19,7 +20,7 @@ class CursesGame:
                 # Draw letters for each column
                 if y == 0:
                     # Convert x-coordinate to lower case letter in alphabet
-                    char = chr(x + 97)
+                    char = str(chr(x + 97)).upper()
                     stdscr.addch(self.offsetY, x + self.offsetX + 2, char)
 
                     # Draw horizontal rule
@@ -66,8 +67,11 @@ class CursesGame:
                 if command == 'reset':
                     self.board = Board.init_board()
 
-                if command == 'quit':
+                if command == 'quit' or command == 'q':
                     return
+
+                log(str(self.board.getsquare(Point.from_letters(command))))
+
 
             # Refresh the window
             stdscr.refresh()

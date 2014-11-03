@@ -13,3 +13,24 @@ class Point:
 
     def add(self, point):
         return Point(self.x + point.x, self.y + point.y)
+
+    def from_letters(coords):
+        """Generate a Cartesian coordinate point from letter + number representation.
+
+           Keyword arguments:
+           coords -- string of form 'A1', 'G5', etc.
+        """
+
+        # String representation is 1-indexed
+        return Point(ord(coords[0]) - 64 - 1, int(coords[1]) - 1)
+
+    def to_letters(self):
+        """Convert coordinate to letter + number representation.
+
+           For example:
+           (3, 5) -> C5
+           (6, 2) -> F2
+        """
+
+        # String representation is 1-indexed
+        return str(chr(self.x + 97 + 1)).upper() + str(self.y + 1)

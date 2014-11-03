@@ -24,3 +24,6 @@ class Piece:
     def render(self):
         return ' '
 
+    def __str__(self):
+        return self.render()
+
