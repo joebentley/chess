@@ -39,7 +39,7 @@ class CursesGame:
 
     def update(self, stdscr):
         """Main game loop, responsible for drawing and input."""
-        # Re-enter curses echo mode
+        # Re-enter curses echo mode so user can see what they type
         curses.echo()
 
         while True:
@@ -62,6 +62,9 @@ class CursesGame:
             if key == ':':
                 # Convert input from byte array to unicode format
                 command = stdscr.getstr().decode('utf-8')
+
+                if command == 'reset':
+                    self.board = Board.init_board()
 
                 if command == 'quit':
                     return
