@@ -1,6 +1,7 @@
 
 import curses
 from chess.board import Board
+from chess.log import log
 
 class CursesGame:
     def __init__(self):
@@ -59,7 +60,11 @@ class CursesGame:
 
             # If the user entered a colon, enter command mode
             if key == ':':
-                command = stdscr.getstr()
+                # Convert input from byte array to unicode format
+                command = stdscr.getstr().decode('utf-8')
+
+                if command == 'quit':
+                    return
 
             # Refresh the window
             stdscr.refresh()
