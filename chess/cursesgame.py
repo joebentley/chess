@@ -1,5 +1,5 @@
 
-from curses import wrapper
+import curses
 from chess.board import Board
 
 class CursesGame:
@@ -38,17 +38,28 @@ class CursesGame:
 
     def update(self, stdscr):
         """Main game loop, responsible for drawing and input."""
+        # Re-enter curses echo mode
+        curses.echo()
+
         while True:
             # Clear the screen
             stdscr.clear()
             # Draw the board
             self.draw(stdscr)
 
+            # Move the cursor underneath the board
+            stdscr.move(self.board.height + self.offsetY + 3, self.offsetX + 1)
+            stdscr.refresh()
+
             # Get key input
             key = stdscr.getkey()
             # Quit if q pressed
             if key == 'q':
                 return
+
+            # If the user entered a colon, enter command mode
+            if key == ':':
+                command = stdscr.getstr()
 
             # Refresh the window
             stdscr.refresh()
@@ -57,4 +68,5 @@ class CursesGame:
     def run(self):
         """Launch main game loop."""
         # Setup curses and launch main game update loop
-        wrapper(self.update)
+        curses.wrapper(self.update)
+
