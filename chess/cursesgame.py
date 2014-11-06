@@ -38,10 +38,19 @@ class CursesGame:
                 stdscr.addch(y + self.offsetY + 2, x + self.offsetX + 2,
                         ord(piece.render()))
 
+    def reset_cursor(self, stdscr):
+        """Move cursor to position underneath board."""
+        stdscr.move(self.board.height + self.offsetY + 3, self.offsetX + 1)
+        stdscr.refresh()
+
     def update(self, stdscr):
         """Main game loop, responsible for drawing and input."""
         # Re-enter curses echo mode so user can see what they type
         curses.echo()
+
+        # Initialize by drawing board and moving cursor underneath it
+        self.draw(stdscr)
+        self.reset_cursor(stdscr)
 
         while True:
             # Clear the screen
@@ -50,30 +59,25 @@ class CursesGame:
             self.draw(stdscr)
 
             # Move the cursor underneath the board
-            stdscr.move(self.board.height + self.offsetY + 3, self.offsetX + 1)
-            stdscr.refresh()
+            self.reset_cursor(stdscr)
 
-            # Get key input
-            key = stdscr.getkey()
-            # Quit if q pressed
-            if key == 'q':
+            # Convert input from byte array to list of unicode format strings
+            command = stdscr.getstr().decode('utf-8').split()
+
+            if command[0] == 'move':
+                # Check that both positions are given
+                if len(command) >= 3:
+                    from_position = Point.from_letters(command[1])
+                    to_position = Point.from_letters(command[2])
+                    self.board.move_piece(from_position, to_position)
+
+            if command[0] == 'reset':
+                self.board = Board.init_board()
+
+            if command[0] == 'quit' or command[0] == 'q':
                 return
 
-            # If the user entered a colon, enter command mode
-            if key == ':':
-                # Convert input from byte array to unicode format
-                command = stdscr.getstr().decode('utf-8')
-
-                if command == 'reset':
-                    self.board = Board.init_board()
-
-                if command == 'quit' or command == 'q':
-                    return
-
-                log(str(self.board.getsquare(Point.from_letters(command))))
-
-            # Refresh the window
-            stdscr.refresh()
+            #log(str(self.board.getsquare(Point.from_letters(command))))
 
     def run(self):
         """Launch main game loop."""
