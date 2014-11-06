@@ -67,8 +67,8 @@ class CursesGame:
             if command[0] == 'move':
                 # Check that both positions are given
                 if len(command) >= 3:
-                    from_position = Point.from_letters(command[1])
-                    to_position = Point.from_letters(command[2])
+                    from_position = Point.from_letters(command[1], self.board)
+                    to_position = Point.from_letters(command[2], self.board)
                     self.board.move_piece(from_position, to_position)
 
             if command[0] == 'reset':
@@ -77,7 +77,7 @@ class CursesGame:
             if command[0] == 'quit' or command[0] == 'q':
                 return
 
-            #log(str(self.board.getsquare(Point.from_letters(command))))
+            log(Point.to_letters(Point(0, 0), self.board))
 
     def run(self):
         """Launch main game loop."""
