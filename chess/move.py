@@ -1,5 +1,5 @@
 
-def checkMove(self, board, from_pos, to_pos):
+def check_move(board, from_pos, to_pos):
     """Check whether the piece at from_pos can move from move to to_pos
        without colliding with another piece or going off the board etc.
 

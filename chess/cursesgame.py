@@ -1,8 +1,9 @@
 
 import curses
+from chess.move  import check_move
 from chess.point import Point
 from chess.board import Board
-from chess.log import log
+from chess.log   import log
 
 class CursesGame:
     def __init__(self):
@@ -34,7 +35,7 @@ class CursesGame:
                     # Draw vertical rule
                     stdscr.addch(y + self.offsetY + 2, self.offsetX + 1, '|')
 
-                # Draw the character at given point onto screen at offset (offsetX, offsetY)
+                # Draw the character at given point onto screen at (offsetX, offsetY)
                 stdscr.addch(y + self.offsetY + 2, x + self.offsetX + 2,
                         ord(piece.render()))
 
@@ -69,7 +70,10 @@ class CursesGame:
                 if len(command) >= 3:
                     from_position = Point.from_letters(command[1], self.board)
                     to_position = Point.from_letters(command[2], self.board)
-                    self.board.move_piece(from_position, to_position)
+
+                    # Only move if move is valid
+                    if check_move(self.board, from_position, to_position):
+                        self.board.move_piece(from_position, to_position)
 
             if command[0] == 'reset':
                 self.board = Board.init_board()
