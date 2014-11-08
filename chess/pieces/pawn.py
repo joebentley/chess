@@ -22,23 +22,35 @@ class Pawn(Piece):
         else:
             return 'p'
 
-    def valid_move(self, position):
+    def valid_move(self, board, position):
+        # Is piece is trying to move 2 spaces forward, check the middle space
+        if abs(self.position.subtract(position).y) == 2:
+            if board.piece_at(position.subtract(Point(0, self.move_dir))):
+                return False
+
         # Pawn must stay in same column during movement
         if position.x == self.position.x:
+            # First check if a piece is in front of the pawn
+            if board.piece_at(position):
+                return False
+
             if position.y == self.position.y + self.move_dir:
                 return True
             # Check if it is the pawn's first turn, if it is it can move two spaces as well
             if not self.moved and position.y == self.position.y + self.move_dir * 2:
                 return True
 
+        log(str(position.subtract(self.position) == Point(1, self.move_dir)))
+        # If there is a piece in a forward diagonal, we can take it
+        if (position.subtract(self.position) == Point(1, self.move_dir) and
+                board.piece_at(self.position.add(Point(1, self.move_dir)))):
+
+            return True
+
+        if (position.subtract(self.position) == Point(-1, self.move_dir) and
+                board.piece_at(self.position.add(Point(-1, self.move_dir)))):
+
+            return True
+
         return False
 
-    def is_path_clear(self, board, to_pos):
-        if board.piece_at(to_pos):
-            return False
-        # Is piece is trying to move 2 spaces, if so check the middle space
-        if abs(self.position.subtract(to_pos).y) == 2:
-            if board.piece_at(to_pos.subtract(Point(0, self.move_dir))):
-                return False
-
-        return True
