@@ -71,11 +71,13 @@ class Board:
         self.setsquare(to_position, piece)
         # Set the old position to be blank
         self.setsquare(from_position, Blank())
+        # Update the piece's position
+        piece.position = to_position
 
     def point_on_board(self, position):
         """Check if position (Point) is on the board."""
         if (position.x < 0 or position.y < 0 or
-            position.x > board.width - 1 or position.y > board.height - 1):
+            position.x > self.width - 1 or position.y > self.height - 1):
 
             return False
 
@@ -88,23 +90,23 @@ class Board:
 
         # Spawn the black back row
         board.board[0][0] = Rook(Point(0, 0), Color.black)
-        board.board[0][1] = Knight(Point(0, 0), Color.black)
-        board.board[0][2] = Bishop(Point(0, 0), Color.black)
-        board.board[0][3] = King(Point(0, 0), Color.black)
-        board.board[0][4] = Queen(Point(0, 0), Color.black)
-        board.board[0][5] = Bishop(Point(0, 0), Color.black)
-        board.board[0][6] = Knight(Point(0, 0), Color.black)
-        board.board[0][7] = Rook(Point(0, 0), Color.black)
+        board.board[0][1] = Knight(Point(1, 0), Color.black)
+        board.board[0][2] = Bishop(Point(2, 0), Color.black)
+        board.board[0][3] = King(Point(3, 0), Color.black)
+        board.board[0][4] = Queen(Point(4, 0), Color.black)
+        board.board[0][5] = Bishop(Point(5, 0), Color.black)
+        board.board[0][6] = Knight(Point(6, 0), Color.black)
+        board.board[0][7] = Rook(Point(7, 0), Color.black)
 
         # Spawn the white back row
-        board.board[7][0] = Rook(Point(0, 0), Color.white)
-        board.board[7][1] = Knight(Point(0, 0), Color.white)
-        board.board[7][2] = Bishop(Point(0, 0), Color.white)
-        board.board[7][3] = King(Point(0, 0), Color.white)
-        board.board[7][4] = Queen(Point(0, 0), Color.white)
-        board.board[7][5] = Bishop(Point(0, 0), Color.white)
-        board.board[7][6] = Knight(Point(0, 0), Color.white)
-        board.board[7][7] = Rook(Point(0, 0), Color.white)
+        board.board[7][0] = Rook(Point(0, 7), Color.white)
+        board.board[7][1] = Knight(Point(1, 7), Color.white)
+        board.board[7][2] = Bishop(Point(2, 7), Color.white)
+        board.board[7][3] = King(Point(3, 7), Color.white)
+        board.board[7][4] = Queen(Point(4, 7), Color.white)
+        board.board[7][5] = Bishop(Point(5, 7), Color.white)
+        board.board[7][6] = Knight(Point(6, 7), Color.white)
+        board.board[7][7] = Rook(Point(7, 7), Color.white)
 
         # Spawn the black pawns
         for x in range(len(board.board[1])):
