@@ -42,3 +42,6 @@ class Point:
 
         # String representation is reversed (8 is at top)
         return str(chr(self.x + 97)).upper() + str(board.height - self.y)
+
+    def __str__(self):
+        return '(' + str(self.x) + ', ' + str(self.y) + ')'
