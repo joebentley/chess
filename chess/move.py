@@ -10,7 +10,7 @@ def check_move(board, from_pos, to_pos):
 
     # Get piece from position
     piece = board.getsquare(from_pos)
-    log(str(piece.position))
+
     # Check if piece could move there on an _empty_ board or trying to move offscreen
     if not piece.valid_move(to_pos) or not board.point_on_board(to_pos):
         return False
