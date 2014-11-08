@@ -72,7 +72,7 @@ class Board:
         # Set the old position to be blank
         self.setsquare(from_position, Blank())
         # Update the piece's position
-        piece.position = to_position
+        piece.set_position(to_position)
 
     def point_on_board(self, position):
         """Check if position (Point) is on the board."""
