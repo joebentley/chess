@@ -14,6 +14,9 @@ class Point:
     def add(self, point):
         return Point(self.x + point.x, self.y + point.y)
 
+    def subtract(self, point):
+        return Point(self.x - point.x, self.y - point.y)
+
     def from_letters(coords, board):
         """Generate a Cartesian coordinate point from letter + number representation.
 
