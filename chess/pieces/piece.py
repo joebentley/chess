@@ -20,6 +20,17 @@ class Piece:
                 if self.valid_move(position):
                     results.append(position)
 
+    def set_position(self, position):
+        """Set new position to position and sets self.moved.
+           Calling this will not change position on board,
+           for that use board.move_piece()
+
+           Keyword arguments:
+           position (Point) -- new position to move to """
+
+        self.position = position
+        self.moved = True
+
     # Return a textual representation of the piece
     def render(self):
         return ' '
