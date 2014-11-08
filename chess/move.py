@@ -1,7 +1,10 @@
 
 def check_move(board, from_pos, to_pos):
-    """Check whether the piece at from_pos can move from move to to_pos
-       without colliding with another piece or going off the board etc.
+    """Check whether the move from (from_pos) to (to_pos) would be
+       a valid move in chess. That is, are there pieces in the way?
+       Can the piece move like this?
+
+       Returns True if the piece can make that move, else False.
 
        Keyword arguments:
        board    (Board) -- current game board
