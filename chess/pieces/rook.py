@@ -28,16 +28,16 @@ class Rook(Piece):
         x_delta = position.x - self.position.x
 
         if y_delta > 0:
-            step_y = int(y_delta/abs(y_delta))
+            y_step = int(y_delta / abs(y_delta))
 
-            # Start at 1 or -1, not 0, this is the same as the step_y
-            for y in range(step_y, y_delta, step_y):
+            # Start at 1 or -1, not 0, this is the same as the y_step
+            for y in range(y_step, y_delta, y_step):
                 if board.piece_at(Point(self.position.x, self.position.y + y)):
                     return False
 
         if x_delta > 0:
-            step_x = int(x_delta/abs(x_delta))
-            for x in range(step_x, x_delta, step_x):
+            x_step = int(x_delta / abs(x_delta))
+            for x in range(x_step, x_delta, x_step):
                 if board.piece_at(Point(self.position.x + x, self.position.y)):
                     return False
 
