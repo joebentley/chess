@@ -81,8 +81,6 @@ class CursesGame:
             if command[0] == 'quit' or command[0] == 'q':
                 return
 
-            log(Point.to_letters(Point(0, 0), self.board))
-
     def run(self):
         """Launch main game loop."""
         # Setup curses and launch main game update loop
